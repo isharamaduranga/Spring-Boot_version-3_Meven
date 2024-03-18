@@ -19,18 +19,49 @@ public class CruddemoApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO){
 
 		return  runner -> {
-			createInstructor(appDAO);
+			// createInstructor(appDAO);
+			//findInstructor(appDAO);
+			deleteInstructor(appDAO);
 		};
 	}
 
+	private void deleteInstructor(AppDAO appDAO) {
+		int theId = 3;
+		System.out.println("Deleting Instructor ID : "+theId);
+		appDAO.deleteInstructorById(theId);
+		System.out.println("Done!");
+	}
+
+	private void findInstructor(AppDAO appDAO) {
+		int theId = 3;
+		System.out.println("Finding Instructor id : "+theId);
+
+		Instructor instructor = appDAO.findInstructorById(theId);
+
+		if (instructor!=null){
+			System.out.println("Instructor : "+instructor);
+			System.out.println("The  associated Instructor Details only : "+instructor.getInstructorDetail());
+		}else{
+			System.out.println("Instructor Not found this Id : "+theId);
+		}
+	}
+
 	private void createInstructor(AppDAO appDAO) {
-		//create the instructor
+	/*	//create the instructor
 		Instructor instructor =
 				new Instructor("Ishara","Maduranga","isharamaduranag500@gmail.com");
 
 		//create the instructor detail
 		InstructorDetail instructorDetail =
-				new InstructorDetail("https://www.ishara.com/youtube", "Read a Books ..");
+				new InstructorDetail("https://www.ishara.com/youtube", "Read a Books ..");*/
+
+			//create the instructor
+		Instructor instructor =
+				new Instructor("Derick","Andrew","derickAndrew@gmail.com");
+
+		//create the instructor detail
+		InstructorDetail instructorDetail =
+				new InstructorDetail("https://www.derick.com/youtube", "Watching Netflix movies ..");
 
 		// associate the objects
 		instructor.setInstructorDetail(instructorDetail);
@@ -41,6 +72,8 @@ public class CruddemoApplication {
 		//
 		System.out.println("Saving Instructor: "+instructor);
 		appDAO.save(instructor);
+
+		System.out.println("Done !!!");
 
 	}
 
