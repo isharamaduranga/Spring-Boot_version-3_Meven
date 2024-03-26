@@ -83,6 +83,10 @@ public class CruddemoApplication {
 
         //CREATE a Student
         Student student1 = new Student("Ishara", "Maduranga", "isha970206@gmail.com");
+
+
+
+
         Student student2 = new Student("Dinuth", "Dheeraka", "dinuth345@gmail.com");
         Student student3 = new Student("Praneeth", "Geethanjana", "praneeth20@gmail.com");
 
