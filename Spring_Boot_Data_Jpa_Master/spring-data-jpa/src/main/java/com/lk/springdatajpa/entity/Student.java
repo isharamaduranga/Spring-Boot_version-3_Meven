@@ -3,6 +3,8 @@ package com.lk.springdatajpa.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(
         name = "tbl_student",
@@ -36,5 +38,6 @@ public class Student {
 
     @Embedded
     private Guardian guardian;
+
 
 }

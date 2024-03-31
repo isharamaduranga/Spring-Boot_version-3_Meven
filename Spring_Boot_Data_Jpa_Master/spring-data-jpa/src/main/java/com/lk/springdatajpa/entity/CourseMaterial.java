@@ -8,9 +8,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Builder
-@ToString
 @Table(name = "tbl_course_material")
+@Builder
+//@ToString(exclude = "course") //OPTION 01
 public class CourseMaterial {
     @Id
     @SequenceGenerator(
@@ -25,11 +25,25 @@ public class CourseMaterial {
     private Long  courseMaterialId;
     private String url;
 
-    @OneToOne
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+
+    //Uni directional mapping
     @JoinColumn(
             name = "course_id",
             referencedColumnName = "courseId"
     )
     private Course course;
 
+    @Override
+    public String toString() {
+        return "CourseMaterial{" +
+                "courseMaterialId=" + courseMaterialId +
+                ", url='" + url + '\'' +
+                ", course=" + course.getCourseId() +//OPTION 02 GET SPECIFIC DETAILS IN COURSE
+                '}';
+    }
 }
